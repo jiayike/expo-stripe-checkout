@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { WebView, Platform, View, ViewPropTypes } from 'react-native';
+import { WebView, Platform } from 'react-native';
 import { PropTypes } from 'prop-types';
 
 class StripeCheckout extends Component {
@@ -62,7 +62,7 @@ class StripeCheckout extends Component {
                 }
               });
             };
-            </script>`, baseUrl: ''}}
+            </script>`}}
         onMessage={event => event.nativeEvent.data === 'WINDOW_CLOSED' ? onClose() : onPaymentSuccess(event.nativeEvent.data)}
         style={[{ flex: 1 }, style]}
         scalesPageToFit={Platform.OS === 'android'}
