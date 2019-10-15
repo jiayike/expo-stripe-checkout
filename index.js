@@ -18,7 +18,7 @@ class StripeCheckout extends Component {
       onClose
     } = this.props;
 
-    const isIOS13 = Platform.Version === 13 && Platform.OS === 'IOS'
+    const isIOS = Platform.OS === 'ios'
 
 
     const jsCode = `(function() {
@@ -41,7 +41,7 @@ class StripeCheckout extends Component {
         bounces={false}
         injectedJavaScript={jsCode}
         source={{ html: `
-            ${isIOS13 ? '<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />' : ''}
+            ${isIOS ? '<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />' : ''}
             <script src="https://checkout.stripe.com/checkout.js"></script>
             <script>
             var handler = StripeCheckout.configure({
@@ -71,7 +71,7 @@ class StripeCheckout extends Component {
         onMessage={event => event.nativeEvent.data === 'WINDOW_CLOSED' ? onClose() : onPaymentSuccess(event.nativeEvent.data)}
         style={[{ flex: 1 }, style]}
         scalesPageToFit={Platform.OS === 'android'}
-        useWebKit={isIOS13}
+        useWebKit={isIOS}
       />
     );
   }
